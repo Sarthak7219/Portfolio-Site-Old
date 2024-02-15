@@ -853,7 +853,7 @@ margin-top: 50px;
 /* theme-switcher start */
 .theme-switcher{
   
-  box-shadow: 0 0 10px var(--skin-color);
+  box-shadow: 0 0 15px var(--white-4);
   float: right;
   top: 42px;
   right: 10px;
@@ -893,7 +893,7 @@ margin-top: 50px;
   padding: 10px;
   text-align: center;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px var(--skin-color);
+  box-shadow: 0 0 15px var(--white-4);
   display: none;
 }
 .theme-box.open{
@@ -910,7 +910,7 @@ margin-top: 50px;
   
 }
 .color{
-  box-shadow: 0 0 10px var(--skin-color);
+  box-shadow: 1 2px 15px var(--white-4);
   width: 20px;
   height: 20px;
   border-radius: 50%;
