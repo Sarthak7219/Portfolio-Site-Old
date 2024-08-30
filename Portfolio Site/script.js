@@ -60,28 +60,44 @@ navToggler.addEventListener("click", () => {
   console.log("hi");
 });
 
-// Define an array to hold the state for each slider
-const sliders = [
-  { containerId: "slider1", currentIndex: 0 },
-  { containerId: "slider2", currentIndex: 0 },
-  { containerId: "slider3", currentIndex: 0 },
-];
+function showSlide(sliderId, index) {
+  const slides = document.querySelectorAll(`#${sliderId} .slide`);
+  const totalSlides = slides.length;
 
-function showSlide(index, containerId) {
-  const slides = document.querySelectorAll(`#${containerId} .slide`);
-  slides.forEach((slide, i) => {
-    slide.style.display = i === index ? "block" : "none";
+  // Ensure the index is within bounds
+  if (index >= totalSlides) index = 0;
+  if (index < 0) index = totalSlides - 1;
+
+  // Hide all slides
+  slides.forEach((slide) => {
+    slide.style.display = "none";
   });
+
+  // Show the current slide
+  slides[index].style.display = "block";
 }
 
-function prevSlide(containerId) {
-  const slider = sliders.find((s) => s.containerId === containerId);
-  slider.currentIndex = (slider.currentIndex - 1 + 2) % 2;
-  showSlide(slider.currentIndex, containerId);
+function prevSlide(sliderId) {
+  const slides = document.querySelectorAll(`#${sliderId} .slide`);
+  let currentIndex = Array.from(slides).findIndex(
+    (slide) => slide.style.display === "block"
+  );
+
+  if (currentIndex === -1) currentIndex = 0; // Default to the first slide if none are visible
+  showSlide(sliderId, currentIndex - 1);
 }
 
-function nextSlide(containerId) {
-  const slider = sliders.find((s) => s.containerId === containerId);
-  slider.currentIndex = (slider.currentIndex + 1) % 2;
-  showSlide(slider.currentIndex, containerId);
+function nextSlide(sliderId) {
+  const slides = document.querySelectorAll(`#${sliderId} .slide`);
+  let currentIndex = Array.from(slides).findIndex(
+    (slide) => slide.style.display === "block"
+  );
+
+  if (currentIndex === -1) currentIndex = 0; // Default to the first slide if none are visible
+  showSlide(sliderId, currentIndex + 1);
 }
+
+// Initialize the first slider
+document.addEventListener("DOMContentLoaded", () => {
+  showSlide("slider1", 0);
+});
