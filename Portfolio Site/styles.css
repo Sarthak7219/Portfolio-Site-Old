@@ -12,6 +12,9 @@
   padding: 0;
   font-family: 'Playfair', serif;
 }
+html {
+  scroll-behavior: smooth;
+}
 body.dark{
   --white-1:#0D0D0D;
   --white-2:#0E1013;
@@ -441,8 +444,8 @@ margin-top: 50px;
   background-color: var(--skin-color);
 }
 .education , .experience{
-  flex: 0 0 50%;
-  max-width: 50%;
+  flex: 0 0 100%;
+  max-width: 100%;
   margin-top: 100px;
 }
 .education h3 , .experience h3{
@@ -451,8 +454,8 @@ margin-top: 50px;
 }
 
 .timeline-box{
-  flex: 0 0 100%;
-  max-width: 90%;
+  flex: 0 0 48%;
+  max-width: 100%;
   background-color: var(--white-2);
   box-shadow: 0 0 15px var(--white-4);
   margin: 40px 0;
