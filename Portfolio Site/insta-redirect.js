@@ -2,16 +2,19 @@ function redirectToExternalBrowser(targetUrl) {
   var ua = navigator.userAgent || navigator.vendor;
   var isInstagram = ua.indexOf("Instagram") > -1;
 
+  // Check if we're in the Instagram in-app browser
   if (isInstagram) {
-    // Redirect to a blank page within Instagram
-    document.body.innerHTML = ""; // Clear page content immediately
+    // Clear the page content immediately
+    document.documentElement.innerHTML = "";
 
-    // Check device and trigger external browser prompt
-    if (/iPad|iPhone|iPod/.test(ua)) {
-      window.location.href = "x-safari-https://" + targetUrl;
-    } else {
-      window.location.href = "intent:" + targetUrl + "#Intent;end";
-    }
+    // Use a short delay to trigger the external redirect
+    setTimeout(() => {
+      if (/iPad|iPhone|iPod/.test(ua)) {
+        window.location.href = "x-web-search://" + targetUrl; // Try using x-web-search for Safari prompt
+      } else {
+        window.location.href = "intent:" + targetUrl + "#Intent;end";
+      }
+    }, 100); // Short delay before redirecting
   } else {
     // Non-Instagram browsers get regular redirect
     window.location.href = targetUrl;
